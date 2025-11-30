@@ -45,7 +45,9 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Auto-create SQLite database and apply migrations
+// Auto-create SQLite database
+// Note: Using EnsureCreated() for simplicity since this is a demo/development environment.
+// For production, consider using dbContext.Database.Migrate() with proper migrations.
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -91,7 +93,7 @@ static void SeedDemoData(AppDbContext context)
         TenantId = tenant.Id,
         AdSoyad = "Demo Kullanıcı",
         Email = "admin@demo.com",
-        PasswordHash = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=", // Demo123!
+        PasswordHash = AuthService.HashPassword("Demo123!"),
         Rol = UserRol.TenantAdmin,
         Aktif = true,
         OlusturmaTarihi = DateTime.Now
