@@ -37,6 +37,7 @@ appsettings.Development.json
 *.mdf
 *.ldf
 *.ndf
+*.db
 
 ## NuGet
 *.nupkg
