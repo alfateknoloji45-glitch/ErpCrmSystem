@@ -83,7 +83,6 @@
                 <!-- Giriş Butonu -->
                 <Button x:Name="LoginButton"
                         Content="GİRİŞ YAP" 
-                        Command="{Binding LoginCommand}"
                         Click="LoginButton_Click"
                         Height="45"
                         FontSize="16"
