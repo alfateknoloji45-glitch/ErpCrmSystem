@@ -61,10 +61,11 @@
                 <PasswordBox x:Name="PasswordBox"
                              Style="{StaticResource ModernPasswordBox}"
                              Margin="0,0,0,10"
-                             PasswordChanged="PasswordBox_PasswordChanged" />
+                             PasswordChanged="PasswordBox_PasswordChanged"
+                             KeyDown="PasswordBox_KeyDown" />
                 
                 <!-- Demo Bilgisi -->
-                <TextBlock Text="Demo Şifre: Demo123!" 
+                <TextBlock Text="Demo: admin@demo.com / Demo123!" 
                            FontSize="11" 
                            Foreground="Gray" 
                            HorizontalAlignment="Center"
@@ -80,11 +81,36 @@
                            Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}" />
                 
                 <!-- Giriş Butonu -->
-                <Button Content="Giriş Yap" 
+                <Button Content="GİRİŞ YAP" 
                         Command="{Binding LoginCommand}"
-                        Style="{StaticResource PrimaryButton}"
                         Height="45"
-                        IsEnabled="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}" />
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Background="#007ACC"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Margin="0,20,0,0"
+                        IsEnabled="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                    CornerRadius="4"
+                                    Padding="20,10">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#005A9E" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="Gray" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
                 
                 <!-- Yükleme Göstergesi -->
                 <StackPanel Orientation="Horizontal" 
