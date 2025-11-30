@@ -40,9 +40,35 @@ public partial class LoginWindow : Window
     /// </summary>
     private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Enter && _viewModel.LoginCommand.CanExecute(null))
+        if (e.Key == Key.Enter)
         {
-            _viewModel.LoginCommand.Execute(null);
+            PerformLogin();
+        }
+    }
+
+    /// <summary>
+    /// LoginButton Click event handler - Giriş butonuna tıklama
+    /// </summary>
+    private void LoginButton_Click(object sender, RoutedEventArgs e)
+    {
+        PerformLogin();
+    }
+
+    /// <summary>
+    /// Centralized login logic
+    /// </summary>
+    private void PerformLogin()
+    {
+        if (_viewModel != null)
+        {
+            // Update password from PasswordBox
+            _viewModel.UpdatePassword(PasswordBox.Password);
+            
+            // Execute login
+            if (_viewModel.LoginCommand?.CanExecute(null) == true)
+            {
+                _viewModel.LoginCommand.Execute(null);
+            }
         }
     }
 

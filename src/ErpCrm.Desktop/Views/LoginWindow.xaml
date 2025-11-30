@@ -81,17 +81,18 @@
                            Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}" />
                 
                 <!-- Giriş Butonu -->
-                <Button Content="GİRİŞ YAP" 
+                <Button x:Name="LoginButton"
+                        Content="GİRİŞ YAP" 
                         Command="{Binding LoginCommand}"
+                        Click="LoginButton_Click"
                         Height="45"
                         FontSize="16"
                         FontWeight="Bold"
-                        Background="#007ACC"
+                        Background="#0078D4"
                         Foreground="White"
                         BorderThickness="0"
                         Cursor="Hand"
-                        Margin="0,20,0,0"
-                        IsEnabled="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                        Margin="0,20,0,0">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" 
