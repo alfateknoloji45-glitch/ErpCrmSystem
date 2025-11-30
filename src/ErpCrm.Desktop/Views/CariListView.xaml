@@ -1,8 +1,206 @@
-<Window x:Class="ErpCrm.Desktop.Views.CariListView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Cari List" Height="400" Width="600">
-    <Grid>
-        <!-- Cari List UI here -->
+<UserControl x:Class="ErpCrm.Desktop.Views.CariListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="White">
+    
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <!-- Toolbar -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource BackgroundBrush}"
+                Padding="15"
+                CornerRadius="8,8,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <!-- Arama -->
+                <Grid Grid.Column="0" Margin="0,0,20,0">
+                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource ModernTextBox}"
+                             Width="300"
+                             HorizontalAlignment="Left" />
+                    <TextBlock Text="🔍 Cari ara..." 
+                               IsHitTestVisible="False"
+                               Foreground="Gray"
+                               VerticalAlignment="Center"
+                               Margin="15,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SearchText}" Value="">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SearchText}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+                
+                <!-- Butonlar -->
+                <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal">
+                    <Button Content="➕ Yeni Cari"
+                            Command="{Binding NewCommand}"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,0,10,0" />
+                    
+                    <Button Content="✏️ Düzenle"
+                            Command="{Binding EditCommand}"
+                            Background="#FFC107"
+                            Foreground="#333"
+                            BorderThickness="0"
+                            Padding="15,10"
+                            Cursor="Hand"
+                            Margin="0,0,10,0" />
+                    
+                    <Button Content="🗑️ Sil"
+                            Command="{Binding DeleteCommand}"
+                            Background="{StaticResource ErrorBrush}"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Padding="15,10"
+                            Cursor="Hand"
+                            Margin="0,0,10,0" />
+                    
+                    <Button Content="🔄 Yenile"
+                            Command="{Binding RefreshCommand}"
+                            Background="#607D8B"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Padding="15,10"
+                            Cursor="Hand" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <!-- DataGrid -->
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding Cariler}"
+                  SelectedItem="{Binding SelectedCari}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  BorderThickness="0"
+                  RowHeight="40"
+                  ColumnHeaderHeight="45"
+                  Background="White"
+                  AlternatingRowBackground="#FAFAFA">
+            
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Padding" Value="15,10" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="15,10" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border Padding="{TemplateBinding Padding}" 
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#E3F2FD" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Cari Kodu" 
+                                    Binding="{Binding CariKodu}" 
+                                    Width="120" />
+                
+                <DataGridTextColumn Header="Cari Adı" 
+                                    Binding="{Binding CariAdi}" 
+                                    Width="*" />
+                
+                <DataGridTextColumn Header="Tip" 
+                                    Binding="{Binding CariTipText}" 
+                                    Width="100" />
+                
+                <DataGridTextColumn Header="Telefon" 
+                                    Binding="{Binding Telefon}" 
+                                    Width="130" />
+                
+                <DataGridTextColumn Header="Email" 
+                                    Binding="{Binding Email}" 
+                                    Width="180" />
+                
+                <DataGridTextColumn Header="İl" 
+                                    Binding="{Binding Il}" 
+                                    Width="100" />
+                
+                <DataGridTextColumn Header="Bakiye" 
+                                    Binding="{Binding Bakiye, StringFormat='{}{0:N2} ₺'}" 
+                                    Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Bakiye, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Negative}" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource ErrorBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <!-- Alt Bar (Durum) -->
+        <Border Grid.Row="2" 
+                Background="{StaticResource BackgroundBrush}"
+                Padding="15"
+                CornerRadius="0,0,8,8">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Toplam: " 
+                               Foreground="Gray" />
+                    <TextBlock Text="{Binding Cariler.Count}" 
+                               FontWeight="SemiBold" />
+                    <TextBlock Text=" kayıt" 
+                               Foreground="Gray" />
+                </StackPanel>
+                
+                <!-- Yükleme Göstergesi -->
+                <TextBlock Text="Yükleniyor..." 
+                           HorizontalAlignment="Right"
+                           Foreground="{StaticResource PrimaryBrush}"
+                           Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}" />
+                
+                <!-- Hata Mesajı -->
+                <TextBlock Text="{Binding ErrorMessage}" 
+                           HorizontalAlignment="Right"
+                           Foreground="{StaticResource ErrorBrush}"
+                           Visibility="{Binding ErrorMessage, Converter={StaticResource StringToVisibilityConverter}}" />
+            </Grid>
+        </Border>
     </Grid>
-</Window>
+</UserControl>
