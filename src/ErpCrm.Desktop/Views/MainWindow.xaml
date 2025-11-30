@@ -120,8 +120,8 @@
                         <TextBlock Text="📅 " 
                                    FontSize="14" 
                                    VerticalAlignment="Center" />
-                        <TextBlock Text="{Binding Source={x:Static System:DateTime.Today}, StringFormat='{}{0:dd MMMM yyyy}'}" 
-                                   xmlns:System="clr-namespace:System;assembly=mscorlib"
+                        <TextBlock Text="{Binding Source={x:Static sys:DateTime.Today}, StringFormat='{}{0:dd MMMM yyyy}'}" 
+                                   xmlns:sys="clr-namespace:System;assembly=System.Runtime"
                                    FontSize="14" 
                                    Foreground="Gray"
                                    VerticalAlignment="Center" />

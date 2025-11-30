@@ -17,10 +17,13 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddControllers();
 
 // CORS configuration
+// NOT: Production'da spesifik origin'ler belirtilmelidir
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
+        // Geliştirme ortamı için tüm kaynaklara izin ver
+        // Production'da değiştirilmeli
         policy.AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader();
