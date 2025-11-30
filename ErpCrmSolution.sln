@@ -1,0 +1,16 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version
+VisualStudioVersion = 16.0.29205.154
+MinimumVisualStudioVersion = 10.0.40219.1
+Projects = {
+    Project('{GUID}') = 'ErpCrm.Core', 'src/ErpCrm.Core\ErpCrm.Core.csproj', '{GUID}'
+    EndProject
+    Project('{GUID}') = 'ErpCrm.Infrastructure', 'src/ErpCrm.Infrastructure\ErpCrm.Infrastructure.csproj', '{GUID}'
+    EndProject
+    Project('{GUID}') = 'ErpCrm.Application', 'src/ErpCrm.Application\ErpCrm.Application.csproj', '{GUID}'
+    EndProject
+    Project('{GUID}') = 'ErpCrm.Api', 'src/ErpCrm.Api\ErpCrm.Api.csproj', '{GUID}'
+    EndProject
+    Project('{GUID}') = 'ErpCrm.Desktop', 'src/ErpCrm.Desktop\ErpCrm.Desktop.csproj', '{GUID}'
+    EndProject
+}
