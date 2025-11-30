@@ -1,6 +1,17 @@
-namespace ErpCrm.Application.DTOs {
-    public class LoginRequest {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
+namespace ErpCrm.Application.DTOs;
+
+/// <summary>
+/// Login isteği DTO sınıfı
+/// </summary>
+public class LoginRequest
+{
+    /// <summary>
+    /// Kullanıcı email adresi
+    /// </summary>
+    public string Email { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Kullanıcı şifresi
+    /// </summary>
+    public string Password { get; set; } = string.Empty;
 }
