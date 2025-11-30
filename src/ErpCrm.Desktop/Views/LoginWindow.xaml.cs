@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ErpCrm.Desktop.ViewModels;
 
 namespace ErpCrm.Desktop.Views;
@@ -31,6 +32,17 @@ public partial class LoginWindow : Window
         if (sender is PasswordBox passwordBox)
         {
             _viewModel.UpdatePassword(passwordBox.Password);
+        }
+    }
+
+    /// <summary>
+    /// PasswordBox KeyDown event handler - Enter tuşu ile giriş yapma
+    /// </summary>
+    private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter && _viewModel.LoginCommand.CanExecute(null))
+        {
+            _viewModel.LoginCommand.Execute(null);
         }
     }
 
