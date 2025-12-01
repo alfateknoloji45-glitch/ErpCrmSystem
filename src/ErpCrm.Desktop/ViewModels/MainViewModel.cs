@@ -127,7 +127,7 @@ public class MainViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Menüyü oluşturur
+    /// Menüyü oluşturur - ALWAYS show ALL menu items
     /// </summary>
     private void BuildMenu()
     {
@@ -136,100 +136,62 @@ public class MainViewModel : ViewModelBase
         var user = App.CurrentUser;
         if (user == null) return;
 
-        var aktifModuller = user.AktifModuller ?? new List<string>();
-
-        // Ana Sayfa (her zaman görünür)
+        // Ana Sayfa - Set Dashboard as default view
         MenuItems.Add(new MenuItem
         {
             Title = "🏠 Ana Sayfa",
             Icon = "🏠",
             ModuleCode = "HOME",
-            Command = new RelayCommand(() => CurrentViewModel = null)
+            Command = new RelayCommand(() => CurrentViewModel = new DashboardViewModel())
         });
 
-        // Cari Modülü
-        if (aktifModuller.Contains("CARI"))
+        // Müşteriler (Cari Modülü)
+        MenuItems.Add(new MenuItem
         {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "👥 Cari Yönetimi",
-                Icon = "👥",
-                ModuleCode = "CARI",
-                Command = new RelayCommand(() => CurrentViewModel = new CariListViewModel())
-            });
-        }
+            Title = "👥 Müşteriler",
+            Icon = "👥",
+            ModuleCode = "CARI",
+            Command = new RelayCommand(() => CurrentViewModel = new CariListViewModel())
+        });
 
-        // Stok Modülü
-        if (aktifModuller.Contains("STOK"))
+        // Ürünler (Stok Modülü)
+        MenuItems.Add(new MenuItem
         {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "📦 Stok Yönetimi",
-                Icon = "📦",
-                ModuleCode = "STOK",
-                Command = new RelayCommand(() => { })
-            });
-        }
+            Title = "📦 Ürünler",
+            Icon = "📦",
+            ModuleCode = "STOK",
+            Command = new RelayCommand(() => CurrentViewModel = new StokListViewModel())
+        });
 
-        // Fatura Modülü
-        if (aktifModuller.Contains("FATURA"))
+        // Faturalar
+        MenuItems.Add(new MenuItem
         {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "📄 Faturalar",
-                Icon = "📄",
-                ModuleCode = "FATURA",
-                Command = new RelayCommand(() => { })
-            });
-        }
+            Title = "📄 Faturalar",
+            Icon = "📄",
+            ModuleCode = "FATURA",
+            Command = new RelayCommand(() => CurrentViewModel = new FaturaListViewModel())
+        });
 
-        // POS Modülü
-        if (aktifModuller.Contains("POS"))
+        // Stok Takip
+        MenuItems.Add(new MenuItem
         {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "🍽️ POS Sistemi",
-                Icon = "🍽️",
-                ModuleCode = "POS",
-                Command = new RelayCommand(() => { })
-            });
-        }
+            Title = "📊 Stok Takip",
+            Icon = "📊",
+            ModuleCode = "STOK_TAKIP",
+            Command = new RelayCommand(() => CurrentViewModel = new StokListViewModel())
+        });
 
-        // CRM Modülü
-        if (aktifModuller.Contains("CRM"))
+        // Ayarlar
+        MenuItems.Add(new MenuItem
         {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "📊 CRM",
-                Icon = "📊",
-                ModuleCode = "CRM",
-                Command = new RelayCommand(() => { })
-            });
-        }
+            Title = "⚙️ Ayarlar",
+            Icon = "⚙️",
+            ModuleCode = "SETTINGS",
+            Command = new RelayCommand(() => CurrentViewModel = new SettingsViewModel())
+        });
 
-        // Raporlama Modülü
-        if (aktifModuller.Contains("RAPORLAMA"))
-        {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "📈 Raporlar",
-                Icon = "📈",
-                ModuleCode = "RAPORLAMA",
-                Command = new RelayCommand(() => { })
-            });
-        }
-
-        // Ayarlar (Admin için)
-        if (user.Rol == "TenantAdmin" || user.Rol == "SuperAdmin")
-        {
-            MenuItems.Add(new MenuItem
-            {
-                Title = "⚙️ Ayarlar",
-                Icon = "⚙️",
-                ModuleCode = "SETTINGS",
-                Command = new RelayCommand(() => { })
-            });
-        }
+        // Set Dashboard as default view on startup
+        CurrentViewModel = new DashboardViewModel();
     }
 
     /// <summary>

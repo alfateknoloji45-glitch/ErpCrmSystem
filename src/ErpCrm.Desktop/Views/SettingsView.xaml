@@ -1,0 +1,77 @@
+<UserControl x:Class="ErpCrm.Desktop.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="clr-namespace:ErpCrm.Desktop.ViewModels">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <TextBlock Text="⚙️ Ayarlar" 
+                   FontSize="24" 
+                   FontWeight="Bold"
+                   Foreground="{StaticResource PrimaryBrush}"
+                   Margin="0,0,0,30"/>
+        
+        <!-- Settings Content -->
+        <Border Grid.Row="1" 
+                Background="White" 
+                CornerRadius="8"
+                Padding="30"
+                VerticalAlignment="Top">
+            <StackPanel MaxWidth="500" HorizontalAlignment="Left">
+                
+                <!-- Firma Adı -->
+                <TextBlock Text="Firma Adı" 
+                           FontSize="12" 
+                           Foreground="Gray" 
+                           Margin="0,0,0,5"/>
+                <TextBox Text="{Binding FirmaAdi}" 
+                         Style="{StaticResource ModernTextBox}"
+                         Margin="0,0,0,20"
+                         IsReadOnly="True"/>
+                
+                <!-- Email -->
+                <TextBlock Text="Email" 
+                           FontSize="12" 
+                           Foreground="Gray" 
+                           Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Email}" 
+                         Style="{StaticResource ModernTextBox}"
+                         Margin="0,0,0,20"
+                         IsReadOnly="True"/>
+                
+                <!-- Telefon -->
+                <TextBlock Text="Telefon" 
+                           FontSize="12" 
+                           Foreground="Gray" 
+                           Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Telefon}" 
+                         Style="{StaticResource ModernTextBox}"
+                         Margin="0,0,0,20"/>
+                
+                <!-- Adres -->
+                <TextBlock Text="Adres" 
+                           FontSize="12" 
+                           Foreground="Gray" 
+                           Margin="0,0,0,5"/>
+                <TextBox Text="{Binding Adres}" 
+                         Style="{StaticResource ModernTextBox}"
+                         Margin="0,0,0,30"
+                         TextWrapping="Wrap"
+                         Height="80"
+                         AcceptsReturn="True"/>
+                
+                <!-- Message -->
+                <TextBlock Text="{Binding Message}" 
+                           Foreground="{StaticResource SuccessBrush}"
+                           FontSize="12"
+                           Margin="0,0,0,10"/>
+                
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
