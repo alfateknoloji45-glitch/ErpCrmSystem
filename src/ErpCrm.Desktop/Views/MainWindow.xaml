@@ -18,6 +18,26 @@
         <DataTemplate DataType="{x:Type viewmodels:CariListViewModel}">
             <views:CariListView />
         </DataTemplate>
+        
+        <!-- DataTemplate for DashboardViewModel -->
+        <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+            <views:DashboardView />
+        </DataTemplate>
+        
+        <!-- DataTemplate for StokListViewModel -->
+        <DataTemplate DataType="{x:Type viewmodels:StokListViewModel}">
+            <views:StokListView />
+        </DataTemplate>
+        
+        <!-- DataTemplate for FaturaListViewModel -->
+        <DataTemplate DataType="{x:Type viewmodels:FaturaListViewModel}">
+            <views:FaturaListView />
+        </DataTemplate>
+        
+        <!-- DataTemplate for SettingsViewModel -->
+        <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+            <views:SettingsView />
+        </DataTemplate>
     </Window.Resources>
     
     <Grid>

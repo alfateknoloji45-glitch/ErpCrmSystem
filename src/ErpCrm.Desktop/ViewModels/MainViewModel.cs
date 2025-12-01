@@ -144,7 +144,7 @@ public class MainViewModel : ViewModelBase
             Title = "🏠 Ana Sayfa",
             Icon = "🏠",
             ModuleCode = "HOME",
-            Command = new RelayCommand(() => CurrentViewModel = null)
+            Command = new RelayCommand(() => CurrentViewModel = new DashboardViewModel())
         });
 
         // Cari Modülü
@@ -167,7 +167,7 @@ public class MainViewModel : ViewModelBase
                 Title = "📦 Stok Yönetimi",
                 Icon = "📦",
                 ModuleCode = "STOK",
-                Command = new RelayCommand(() => { })
+                Command = new RelayCommand(() => CurrentViewModel = new StokListViewModel())
             });
         }
 
@@ -179,7 +179,7 @@ public class MainViewModel : ViewModelBase
                 Title = "📄 Faturalar",
                 Icon = "📄",
                 ModuleCode = "FATURA",
-                Command = new RelayCommand(() => { })
+                Command = new RelayCommand(() => CurrentViewModel = new FaturaListViewModel())
             });
         }
 
@@ -227,9 +227,12 @@ public class MainViewModel : ViewModelBase
                 Title = "⚙️ Ayarlar",
                 Icon = "⚙️",
                 ModuleCode = "SETTINGS",
-                Command = new RelayCommand(() => { })
+                Command = new RelayCommand(() => CurrentViewModel = new SettingsViewModel())
             });
         }
+
+        // Varsayılan olarak Dashboard göster
+        CurrentViewModel = new DashboardViewModel();
     }
 
     /// <summary>
