@@ -155,12 +155,6 @@
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StokMiktari, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=LowStock}" Value="True">
-                                    <Setter Property="Foreground" Value="{StaticResource ErrorBrush}" />
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                </DataTrigger>
-                            </Style.Triggers>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>

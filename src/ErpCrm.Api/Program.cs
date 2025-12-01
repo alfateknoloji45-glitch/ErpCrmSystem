@@ -159,9 +159,48 @@ static void SeedDemoData(AppDbContext context)
     // Add demo invoices
     var invoices = new List<Fatura>
     {
-        new Fatura { TenantId = tenant.Id, FaturaNo = "FAT-2024-001", FaturaTarihi = DateTime.Now.AddDays(-5), FaturaTipi = FaturaTipi.Satis, CariId = customers[0].Id, AraToplam = 15000, KdvToplam = 2700, GenelToplam = 17700, Durum = FaturaDurum.Onaylandi, OlusturanKullaniciId = user.Id, OlusturmaTarihi = DateTime.Now.AddDays(-5) },
-        new Fatura { TenantId = tenant.Id, FaturaNo = "FAT-2024-002", FaturaTarihi = DateTime.Now.AddDays(-3), FaturaTipi = FaturaTipi.Satis, CariId = customers[1].Id, AraToplam = 3850, KdvToplam = 693, GenelToplam = 4543, Durum = FaturaDurum.Onaylandi, OlusturanKullaniciId = user.Id, OlusturmaTarihi = DateTime.Now.AddDays(-3) },
-        new Fatura { TenantId = tenant.Id, FaturaNo = "FAT-2024-003", FaturaTarihi = DateTime.Now.AddDays(-1), FaturaTipi = FaturaTipi.Satis, CariId = customers[2].Id, AraToplam = 8500, KdvToplam = 1530, GenelToplam = 10030, Durum = FaturaDurum.Taslak, OlusturanKullaniciId = user.Id, OlusturmaTarihi = DateTime.Now.AddDays(-1) }
+        new Fatura
+        {
+            TenantId = tenant.Id,
+            FaturaNo = "FAT-2024-001",
+            FaturaTarihi = DateTime.Now.AddDays(-5),
+            FaturaTipi = FaturaTipi.Satis,
+            CariId = customers[0].Id,
+            AraToplam = 15000,
+            KdvToplam = 2700,
+            GenelToplam = 17700,
+            Durum = FaturaDurum.Onaylandi,
+            OlusturanKullaniciId = user.Id,
+            OlusturmaTarihi = DateTime.Now.AddDays(-5)
+        },
+        new Fatura
+        {
+            TenantId = tenant.Id,
+            FaturaNo = "FAT-2024-002",
+            FaturaTarihi = DateTime.Now.AddDays(-3),
+            FaturaTipi = FaturaTipi.Satis,
+            CariId = customers[1].Id,
+            AraToplam = 3850,
+            KdvToplam = 693,
+            GenelToplam = 4543,
+            Durum = FaturaDurum.Onaylandi,
+            OlusturanKullaniciId = user.Id,
+            OlusturmaTarihi = DateTime.Now.AddDays(-3)
+        },
+        new Fatura
+        {
+            TenantId = tenant.Id,
+            FaturaNo = "FAT-2024-003",
+            FaturaTarihi = DateTime.Now.AddDays(-1),
+            FaturaTipi = FaturaTipi.Satis,
+            CariId = customers[2].Id,
+            AraToplam = 8500,
+            KdvToplam = 1530,
+            GenelToplam = 10030,
+            Durum = FaturaDurum.Taslak,
+            OlusturanKullaniciId = user.Id,
+            OlusturmaTarihi = DateTime.Now.AddDays(-1)
+        }
     };
     context.Faturalar.AddRange(invoices);
     context.SaveChanges();

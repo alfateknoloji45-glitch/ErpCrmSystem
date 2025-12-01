@@ -107,40 +107,10 @@
                                FontWeight="SemiBold"
                                Margin="0,0,0,15" />
                     
-                    <Grid Width="400" HorizontalAlignment="Left">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        
-                        <TextBlock Grid.Row="0" 
-                                   Text="Mevcut Şifre" 
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,0,5" />
-                        <PasswordBox Grid.Row="1" 
-                                     Style="{StaticResource ModernPasswordBox}"
-                                     Margin="0,0,0,15" />
-                        
-                        <TextBlock Grid.Row="2" 
-                                   Text="Yeni Şifre" 
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,0,5" />
-                        <PasswordBox Grid.Row="3" 
-                                     Style="{StaticResource ModernPasswordBox}"
-                                     Margin="0,0,0,15" />
-                        
-                        <TextBlock Grid.Row="4" 
-                                   Text="Yeni Şifre (Tekrar)" 
-                                   FontWeight="SemiBold"
-                                   Margin="0,0,0,5" />
-                        <PasswordBox Grid.Row="5" 
-                                     Style="{StaticResource ModernPasswordBox}"
-                                     Margin="0,0,0,15" />
-                    </Grid>
+                    <TextBlock Text="Şifre değiştirme özelliği yakında eklenecektir."
+                               Foreground="Gray"
+                               FontStyle="Italic"
+                               Margin="0,0,0,15" />
                     
                     <!-- Hata Mesajı -->
                     <TextBlock Text="{Binding ErrorMessage}" 
@@ -153,12 +123,6 @@
                                Foreground="{StaticResource SuccessBrush}"
                                Visibility="{Binding SuccessMessage, Converter={StaticResource StringToVisibilityConverter}}"
                                Margin="0,0,0,10" />
-                    
-                    <Button Content="Şifreyi Değiştir"
-                            Command="{Binding ChangePasswordCommand}"
-                            Style="{StaticResource PrimaryButton}"
-                            HorizontalAlignment="Left"
-                            Margin="0,10,0,0" />
                 </StackPanel>
             </Border>
         </Grid>
