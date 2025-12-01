@@ -63,13 +63,22 @@ public class DashboardViewModel : ViewModelBase
     /// </summary>
     public DashboardViewModel()
     {
-        LoadDashboardAsync();
+        // Fire and forget initialization - exceptions are handled internally
+        _ = InitializeAsync();
+    }
+
+    /// <summary>
+    /// Dashboard verilerini async olarak yükler
+    /// </summary>
+    private async Task InitializeAsync()
+    {
+        await LoadDashboardAsync();
     }
 
     /// <summary>
     /// Dashboard verilerini API'den yükler
     /// </summary>
-    private async void LoadDashboardAsync()
+    private async Task LoadDashboardAsync()
     {
         try
         {
